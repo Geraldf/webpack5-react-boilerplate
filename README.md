@@ -5,7 +5,7 @@ Webpack 5  boilerplate for react using babel, sass, with a hot dev server and an
 ## Installation
 
 ```
-git clone https://github.com/miami78/webpack5-react-boilerplate.git
+git clone https://github.com/Geraldf/webpack5-react-boilerplate.git
 cd webpack5-react-boilerplate
 yarn / npm i
 ```
