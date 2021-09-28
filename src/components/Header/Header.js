@@ -9,6 +9,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
+//import Logo from "../../assets/icons/FoxMenu";
+import Logo from "../../assets/icons/fox_menu.svg";
+import { useTheme } from "@material-ui/core/styles";
+
 const styles = (theme) => ({
   toolbarRoot: {
     paddingRight: 24,
@@ -16,6 +20,7 @@ const styles = (theme) => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 36,
+    color: "#ec407a",
   },
   title: {
     flexGrow: 1,
@@ -24,25 +29,29 @@ const styles = (theme) => ({
 
 const Header = (props) => {
   const { classes, handleToggleDrawer } = props;
+  const theme = useTheme();
   return (
     <AppBar position="fixed">
       <Toolbar disableGutters={true} classes={{ root: classes.toolbarRoot }}>
-        <IconButton
-          color="inherit"
+        <Logo
+          width={30}
+          height={30}
           aria-label="Open drawer"
           onClick={handleToggleDrawer}
           className={classes.menuButton}
-        >
-          <MenuIcon />
-        </IconButton>
+          color="#123123"
+          fill={theme.palette.primary.contrastText}
+        ></Logo>
+        {/* <Logo width={30} height={30}></Logo> */}
         <Typography
           variant="h6"
           color="inherit"
           noWrap
           className={classes.title}
         >
-          Dashboard
+          Appname
         </Typography>
+
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
             <NotificationsIcon />
