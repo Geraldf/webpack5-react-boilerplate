@@ -2,11 +2,20 @@ import indigo from "@material-ui/core/colors/indigo";
 import green from "@material-ui/core/colors/green";
 import gray from "@material-ui/core/colors/grey";
 import red from "@material-ui/core/colors/red";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { blueGrey } from "@material-ui/core/colors";
+import { wconfig } from "../../services/config.service";
 
 const primaryColor = blueGrey;
 const secondaryColor = green;
+
+// First, create the thunk
+export const saveConfig = createAsyncThunk(
+  "users/fetchByIdStatus",
+  async (userId, thunkAPI) => {
+    ret = wconfig(userId);
+  }
+);
 
 const themeConfig = {
   typography: {
@@ -36,6 +45,8 @@ export const settings = createSlice({
     theme: defaultTheme,
     darkMode: false,
     colorsSwaped: false,
+    apiURL: "http://localhost",
+    apiPort: "4000",
   },
   reducers: {
     toggleThemeMode: (state, action) => {
@@ -89,6 +100,16 @@ export const settings = createSlice({
         };
       }
     },
+    setUrl: (state, action) => {
+      const a = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(saveConfig.fulfilled, (state, action) => {
+      // Add user to the state array
+      state.entities.push(action.payload);
+    });
   },
 });
 
@@ -99,5 +120,7 @@ export const isDarkMode = (state) => state.settings.darkMode;
 export const isColorSwaped = (state) => state.settings.colorsSwaped;
 
 export const getTheme = (state) => state.settings.theme;
+export const getURL = (state) => state.settings.apiURL;
+export const getPort = (state) => state.settings.apiPort;
 
 export default settings.reducer;

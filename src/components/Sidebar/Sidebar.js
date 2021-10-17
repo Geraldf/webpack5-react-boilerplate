@@ -9,10 +9,11 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import TableChartIcon from "@material-ui/icons/TableChart";
 
 const drawerWidth = 240;
 
-const styles = theme => ({
+const styles = (theme) => ({
   drawerPaper: {
     position: "fixed",
     top: theme.spacing(8),
@@ -20,23 +21,23 @@ const styles = theme => ({
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   drawerPaperClose: {
     overflowX: "hidden",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(8),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    }
-  }
+      width: theme.spacing(9),
+    },
+  },
 });
 
-const Sidebar = props => {
+const Sidebar = (props) => {
   const { open, classes } = props;
   return (
     <Drawer
@@ -45,7 +46,7 @@ const Sidebar = props => {
         paper: classNames(
           classes.drawerPaper,
           !open && classes.drawerPaperClose
-        )
+        ),
       }}
       open={open}
     >
@@ -64,6 +65,14 @@ const Sidebar = props => {
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
+          </ListItem>
+        </Link>
+        <Link to="/table">
+          <ListItem button>
+            <ListItemIcon>
+              <TableChartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tables" />
           </ListItem>
         </Link>
       </List>

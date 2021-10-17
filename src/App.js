@@ -10,6 +10,7 @@ import "./app.styles.scss";
 import Home from "./containers/Home/Home";
 import Setting from "./containers/Setting/Setting";
 import ErrorBoundary from "./components/ErrorBoundaries";
+import AddUser from "./components/User/AddUser";
 
 import MainLayout from "./layouts/MainLayout";
 import EmptyLayout from "./layouts/EmptyLayout";
@@ -58,6 +59,7 @@ function App() {
               <DashboardRoute path="/dashboard" component={Home} />
               <DashboardRoute path="/setting" component={Setting} />
               <DashboardRoute exact path="/" component={Home} />
+              <DashboardRoute exact path="/table" component={AddUser} />
               <EmptyRoute component={NotFound} />
             </Switch>
           </Router>
